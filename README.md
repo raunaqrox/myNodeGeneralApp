@@ -29,6 +29,7 @@
  - live feed( what people you follow are doing )
  - responsive
  - client side caching
+ - some basic testing
 
 ## Future Todo(what will not be done initially)
  - Make it isomorphic

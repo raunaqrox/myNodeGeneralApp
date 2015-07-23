@@ -8,6 +8,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const morgan = require('morgan');
+const logger = require('./logger/logger');
 const config = require('./config/config');
 
 /**
@@ -20,8 +22,9 @@ const port = 3000;
   Middleware
 */
 app.use(express.static('public'));
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
+morgan("dev", {stream:logger.stream});
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 
 /**
   Routes
@@ -32,11 +35,11 @@ app.get('/', function(req,res){
 
 
 mongoose.connect(url, function (error) {
-    if (error)return console.log(error);
-    console.log("MongoDB: connection to database succesful!");
+    if (error)return logger.info(error);
+    logger.info("MongoDB: connection to database succesful!");
 
     var server = app.listen(port, function () {
-      console.log('Express: listening port: ', server.address().port);
+      logger.info('Express: listening port: ', server.address().port);
     });
 
 });
