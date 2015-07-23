@@ -20,7 +20,6 @@ const port = 3000;
   Middleware
 */
 app.use(express.static('public'));
-
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jade')
 
