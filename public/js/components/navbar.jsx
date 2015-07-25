@@ -1,21 +1,18 @@
 // Todo
-// make the array of objects, {name, href}
+// make the array of objects, {name, href, class?, id?}
 var globals = {
   "H" : {'name':'Home', 'href':'/'},
-  "Git" : ["add -A", "commit", "push"],
-  "Edit" : ["copy", "paste", "undo", "redo", "find", "replace"],
-  "Editor" : ["syntax", "themes", "setting"]
 }
-
+if(document.getElementById('navContainerLoggedOut')){
+  globals.login = {'name':'Login', 'href':'/login'};
+  globals.reg = {'name':'Register', 'href':'/register'}
+}
 var Navbar = React.createClass({
     render: function() {
       return (
         <nav className="navbar navbar-default">
           <Heading val={this.props.txt} />
           <NavOpContainer />
-          <div id="loading">
-            <img className="pull-right" src="img/loading.gif" />
-          </div>
         </nav>
       );
     }
@@ -103,8 +100,4 @@ var NavOpContainer = React.createClass({
   }
 })
 
-
-React.render(
-  <Navbar txt="Heading / LOGO" />,
-  document.getElementById('navContainer')
-);
+module.exports = Navbar;

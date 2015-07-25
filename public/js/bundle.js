@@ -47,7 +47,7 @@
 	'use strict';
 
 	__webpack_require__(1);
-	__webpack_require__(3);
+	// require('./controller/main.js')
 
 /***/ },
 /* 1 */
@@ -55,23 +55,57 @@
 
 	/** @jsx React.DOM */'use strict';
 
-	__webpack_require__(2);
+	var Navbar = __webpack_require__(2);
+	var Content;
+	switch (window.location.pathname) {
+	  case '/login':
+	    Content = __webpack_require__(4);
+	    break;
+	  case '/register':
+	    Content = __webpack_require__(5);
+	    break;
+	  default:
+	    Content = React.createClass({
+	      displayName: 'Content',
+
+	      render: function render() {
+	        return React.createElement(
+	          'h1',
+	          null,
+	          'Home'
+	        );
+	      }
+	    });
+	}
+	var Website = React.createClass({
+	  displayName: 'Website',
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'container' },
+	      React.createElement(Navbar, { txt: 'Heading / Logo' }),
+	      React.createElement(Content, null)
+	    );
+	  }
+	});
+	React.render(React.createElement(Website, null), document.body);
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
 	/** @jsx React.DOM */// Todo
-	// make the array of objects, {name, href}
+	// make the array of objects, {name, href, class?, id?}
 	'use strict';
 
 	var globals = {
-	  'H': { 'name': 'Home', 'href': '/' },
-	  'Git': ['add -A', 'commit', 'push'],
-	  'Edit': ['copy', 'paste', 'undo', 'redo', 'find', 'replace'],
-	  'Editor': ['syntax', 'themes', 'setting']
+	  'H': { 'name': 'Home', 'href': '/' }
 	};
-
+	if (document.getElementById('navContainerLoggedOut')) {
+	  globals.login = { 'name': 'Login', 'href': '/login' };
+	  globals.reg = { 'name': 'Register', 'href': '/register' };
+	}
 	var Navbar = React.createClass({
 	  displayName: 'Navbar',
 
@@ -80,12 +114,7 @@
 	      'nav',
 	      { className: 'navbar navbar-default' },
 	      React.createElement(Heading, { val: this.props.txt }),
-	      React.createElement(NavOpContainer, null),
-	      React.createElement(
-	        'div',
-	        { id: 'loading' },
-	        React.createElement('img', { className: 'pull-right', src: 'img/loading.gif' })
-	      )
+	      React.createElement(NavOpContainer, null)
 	    );
 	  }
 	});
@@ -192,22 +221,46 @@
 	  }
 	});
 
-	React.render(React.createElement(Navbar, { txt: 'Heading / LOGO' }), document.getElementById('navContainer'));
+	module.exports = Navbar;
 
 /***/ },
-/* 3 */
+/* 3 */,
+/* 4 */
 /***/ function(module, exports) {
 
-	'use strict';
+	/** @jsx React.DOM */"use strict";
 
-	$(document).ready(function () {
-	  var $loading = $('#loading').hide();
-	  $(document).ajaxStart(function () {
-	    $loading.show();
-	  }).ajaxStop(function () {
-	    $loading.hide();
-	  });
+	var Login = React.createClass({
+	  displayName: "Login",
+
+	  render: function render() {
+	    return React.createElement(
+	      "h1",
+	      null,
+	      "LOGIN"
+	    );
+	  }
 	});
+	module.exports = Login;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	/** @jsx React.DOM */"use strict";
+
+	var Register = React.createClass({
+	  displayName: "Register",
+
+	  render: function render() {
+	    return React.createElement(
+	      "h1",
+	      null,
+	      "Register"
+	    );
+	  }
+	});
+	module.exports = Register;
 
 /***/ }
 /******/ ]);

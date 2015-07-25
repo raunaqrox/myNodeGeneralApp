@@ -11,18 +11,30 @@ const passport = require('passport');
 const morgan = require('morgan');
 const logger = require('./logger/logger');
 const config = require('./config/config');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 /**
   Global variables
 */
 const url = "mongodb://" + config.mongo.username + config.mongo.password + "@" + config.mongo.url;
-const port = 3000;
+const port = 3000 || process.env.port;
+var loggedIn = false;
 
 /**
   Middleware
 */
-app.use(express.static('public'));
+
 morgan("dev", {stream:logger.stream});
+app.use(express.static('public'));
+app.use(cookieParser());
+app.use(session({
+  secret: config.secret,
+  saveUninitialized: true,
+  resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
@@ -32,7 +44,12 @@ app.set('view engine', 'jade');
 app.get('/', function(req,res){
   res.render('index');
 });
-
+app.get('/login', function(req,res){
+  res.render('login', {'loggedIn':loggedIn});
+});
+app.get('/register', function(req,res){
+  res.render('register', {'loggedIn':loggedIn});
+});
 
 mongoose.connect(url, function (error) {
     if (error)return logger.info(error);

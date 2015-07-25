@@ -35,12 +35,13 @@
  - Make it isomorphic
  - use react router
  - level(sql and nosql)
+ - generalmobile app conversion(maybe hybrid) react-native for ios and mld for look in android
 
 ## Other cool features(may add in future)
  - markdown for any text with preview or for comments/content description atleast.
  - lots of graphs of the content, a **Dashboard**
  - chrome extensions to intereact
-
+ - use just grid from bootstrap and use mld for material design
 
 ## Interesting ideas
  - Navbar being made from object
