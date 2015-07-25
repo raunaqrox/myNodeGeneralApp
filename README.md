@@ -6,6 +6,7 @@
  - also websockets will be connected for notifications and live feed
  - webpack is used to compile es6 and jsx
  - to see if redis could be used for something here
+### Looks like I will have to remake this at least once
 
 ## MongoDb Collections
  - users
@@ -47,3 +48,4 @@
  - Navbar being made from object
  - routing is from server and react is being used clientside(may not be good but different)
  - Not using flux, each react component will have its own js if it needs
+ - A general form builder using json like the navigation

@@ -1,3 +1,4 @@
 config
 node_modules
 logger/logs
+npm-debug.log

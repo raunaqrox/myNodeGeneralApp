@@ -1,6 +1,9 @@
 var Navbar = require('./navbar.jsx');
 var Content;
 switch(window.location.pathname){
+  case "/":
+    Content = require('./home.jsx');
+    break;
   case "/login":
     Content = require('./login.jsx');
     break;
@@ -8,13 +11,7 @@ switch(window.location.pathname){
     Content = require('./register.jsx');
     break;
   default:
-    Content = React.createClass({
-      render: function(){
-        return (
-          <h1>Home</h1>
-        )
-      }
-    });
+    Content = require('./home.jsx');
 }
 var Website = React.createClass({
   render: function(){

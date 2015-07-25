@@ -58,6 +58,9 @@
 	var Navbar = __webpack_require__(2);
 	var Content;
 	switch (window.location.pathname) {
+	  case '/':
+	    Content = __webpack_require__(6);
+	    break;
 	  case '/login':
 	    Content = __webpack_require__(4);
 	    break;
@@ -65,17 +68,7 @@
 	    Content = __webpack_require__(5);
 	    break;
 	  default:
-	    Content = React.createClass({
-	      displayName: 'Content',
-
-	      render: function render() {
-	        return React.createElement(
-	          'h1',
-	          null,
-	          'Home'
-	        );
-	      }
-	    });
+	    Content = __webpack_require__(6);
 	}
 	var Website = React.createClass({
 	  displayName: 'Website',
@@ -234,13 +227,24 @@
 	  displayName: "Login",
 
 	  render: function render() {
+	    return React.createElement(Form, { action: "/register", method: "POST" });
+	  }
+	});
+
+	var Form = React.createClass({
+	  displayName: "Form",
+
+	  render: function render() {
 	    return React.createElement(
-	      "h1",
-	      null,
-	      "LOGIN"
+	      "form",
+	      { "class": "form-horizontal", method: this.props.method, action: this.props.action },
+	      React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", required: true }),
+	      React.createElement("input", { type: "password", className: "form-control", id: "pass", placeholder: "Password", required: true }),
+	      React.createElement("input", { type: "submit", className: "btn btn-primary" })
 	    );
 	  }
 	});
+
 	module.exports = Login;
 
 /***/ },
@@ -253,14 +257,45 @@
 	  displayName: "Register",
 
 	  render: function render() {
+	    return React.createElement(Form, { action: "/login", method: "POST" });
+	  }
+	});
+
+	var Form = React.createClass({
+	  displayName: "Form",
+
+	  render: function render() {
 	    return React.createElement(
-	      "h1",
-	      null,
-	      "Register"
+	      "form",
+	      { "class": "form-horizontal", method: this.props.method, action: this.props.action },
+	      React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", required: true }),
+	      React.createElement("input", { type: "email", className: "form-control", id: "email", placeholder: "Email", required: true }),
+	      React.createElement("input", { type: "password", className: "form-control", id: "pass", placeholder: "Password", required: true }),
+	      React.createElement("input", { type: "submit", className: "btn btn-primary" })
 	    );
 	  }
 	});
 	module.exports = Register;
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	/** @jsx React.DOM */"use strict";
+
+	var Home = React.createClass({
+	  displayName: "Home",
+
+	  render: function render() {
+	    return React.createElement(
+	      "h1",
+	      null,
+	      "Home"
+	    );
+	  }
+	});
+
+	module.exports = Home;
 
 /***/ }
 /******/ ]);
