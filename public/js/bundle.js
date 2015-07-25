@@ -237,7 +237,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      "form",
-	      { "class": "form-horizontal", method: this.props.method, action: this.props.action },
+	      { className: "form-horizontal", method: this.props.method, action: this.props.action },
 	      React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", required: true }),
 	      React.createElement("input", { type: "password", className: "form-control", id: "pass", placeholder: "Password", required: true }),
 	      React.createElement("input", { type: "submit", className: "btn btn-primary" })
@@ -267,7 +267,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      "form",
-	      { "class": "form-horizontal", method: this.props.method, action: this.props.action },
+	      { className: "form-horizontal", method: this.props.method, action: this.props.action },
 	      React.createElement("input", { type: "text", className: "form-control", id: "username", placeholder: "Username", required: true }),
 	      React.createElement("input", { type: "email", className: "form-control", id: "email", placeholder: "Email", required: true }),
 	      React.createElement("input", { type: "password", className: "form-control", id: "pass", placeholder: "Password", required: true }),

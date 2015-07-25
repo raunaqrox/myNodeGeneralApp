@@ -44,12 +44,33 @@ app.set('view engine', 'jade');
 app.get('/', function(req,res){
   res.render('index');
 });
+
 app.get('/login', function(req,res){
   res.render('login', {'loggedIn':loggedIn});
 });
+
 app.get('/register', function(req,res){
   res.render('register', {'loggedIn':loggedIn});
 });
+
+app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+});
+
+app.get('/profile', isLoggedIn, function(req, res){
+  res.render('profile');
+});
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 mongoose.connect(url, function (error) {
     if (error)return logger.info(error);
